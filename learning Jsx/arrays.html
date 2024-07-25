@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting with react</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+       
+    </div>
+
+    <script  type="text/babel">
+
+
+        function Sum(){
+            let a=10+5
+            return a;
+        }
+
+        const header=<h2> this is a jasx expression</h2>
+
+        function App(){
+            let arr=[1,2,3,4,5];
+            let obj={
+                name:"Alexa",
+                Age:"10"
+            }
+            
+            return (<>
+            <h1>Arrays and Objects in JSX </h1>
+            <ul>
+            {arr.map((num,index)=>
+                <li key={index}>  arr: {num}</li>
+            )}
+        </ul>
+            <h2>  Obj: {obj.name}</h2>
+          
+            </>)
+        }
+        const rootElement=ReactDOM.createRoot(document.getElementById("root"))
+        rootElement.render(<App/>)
+    </script>
+</body>
+</html>
