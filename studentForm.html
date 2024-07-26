@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let input1Ref = React.createRef();
+      let input2Ref = React.createRef();
+      let tableRef = React.createRef();
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        const name = input1Ref.current.value;
+        const marks = input2Ref.current.value;
+
+        if (name && marks) {
+          const newRow = document.createElement('tr');
+          const nameCell = document.createElement('td');
+          const marksCell = document.createElement('td');
+
+          nameCell.textContent = name;
+          marksCell.textContent = marks;
+
+          newRow.appendChild(nameCell);
+          newRow.appendChild(marksCell);
+          tableRef.current.appendChild(newRow);
+
+          // Clear the input fields
+          input1Ref.current.value = '';
+          input2Ref.current.value = '';
+        }
+      }
+
+      const Form = () => (
+        <form onSubmit={handleSubmit}>
+          <input ref={input1Ref} placeholder="Student's name" />
+          <input ref={input2Ref} placeholder="Marks" />
+          <button type="submit">Submit</button>
+        </form>
+      );
+
+      const Result = () => (
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Student's name</th>
+              <th>Marks</th>
+            </tr>
+          </thead>
+          <tbody ref={tableRef}></tbody>
+        </table>
+      );
+
+      const App = () => (
+        <>
+          <h1>Student's form</h1>
+          <Form />
+          <Result />
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
